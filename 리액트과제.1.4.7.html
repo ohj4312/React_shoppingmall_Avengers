@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simpler</title>
+  <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/2.8.1/ReactRouter.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+
+<style>
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+.header{
+    border-bottom: groove;
+}
+div.content{
+
+  width: 100%;
+  padding-top: 50px;
+
+}
+a{
+	text-decoration: none;
+}
+ul{
+
+	list-style: none;
+}
+.rr{
+  text-aling:left;
+}
+div#container>div{
+text-align: center;
+}
+#logo{
+  padding-top:50px;
+	width: 240px;
+}
+ul.menu{
+	  width: 464px;
+  	margin: auto;
+    padding-top: 50px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-size: 16px;
+	}
+	ul.menu li{
+		float: left;
+    margin-left: 90px;
+	}
+	ul.menu li a{
+		color: black;
+	}
+  .info{
+    margin-top: 200px;
+    margin-bottom: 80px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .Costimageshow{
+    width:150px;
+    height: 200px;
+  }
+  .Simageshow{
+    width:220px;
+    height:300px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .Scimageshow1{
+    align:center;
+    width:350px;
+    height:250px;
+    margin:0px;
+    padding-top:50px;
+
+  }
+  .Scimageshow2{
+    align:center;
+    width:230px;
+    height:230px;
+    margin:0px;
+    padding-top:50px;
+  }
+  .line{
+    border-bottom:0px;
+    text-align:left;
+    margin-left:0px;
+  }
+  ul.circle{
+		position: absolute;
+  	bottom: 45px;
+  	left: 45%;
+	}
+  ul.circle li{
+    display: inline-block;
+    padding:10px;
+    padding-top: 390px;
+    cursor:pointer;
+    filter:drop-shadow(0px 0px 5px #666);
+    color: white;
+  }
+  .scatterinline{
+    display: inline-block;
+  }
+  .Sccom1{
+    width:528px;
+    height:400px;
+    border-collapse:collapse;
+    display: inline-block;
+    border:groove;
+	border-color: #ffffff33;
+  }
+  .Sccom2{
+    width: 350px;
+    height: 400px;
+    border-collapse: collapse;
+    display: inline-block;
+    border: groove;
+    margin: 0px;
+    border-color: #ffffff33;
+    border-top: none;
+  }
+	#sccom-1{
+
+		border-left: none;
+	}
+	#sccom-2{
+
+	   border-left: none;
+       border-right: none;
+	}
+
+  .bottomLeft{
+    width:550;
+    padding-right:0px;
+    display: inline-block;
+	margin-right: 90px;
+  }
+  .bottomRight{
+    width:550;
+    padding-left: 0px;
+    display: inline-block;
+    text-align: left;
+  }
+  .Bottomheader
+  {
+    text-align: left;
+      float:left;
+  }
+  a.left {
+    background-image: url(mainimg/prev.png);
+    background-repeat: no-repeat;
+    background-size: 40px 65px;
+    width: 78px;
+    height: 65px;
+    display: block;
+    position: absolute;
+    top: 46%;
+    left: 3%;
+}
+ a.right {
+	background-image: url(mainimg/next.png);
+    background-repeat: no-repeat;
+    background-size: 40px 65px;
+    width: 78px;
+    height: 65px;
+    display: block;
+    position: absolute;
+    top: 46%;
+    right: 0%;
+
+}
+	p.Bgslideinfo{
+		position: absolute;
+  	top: 29px;
+    left: 422px;
+	}
+	#Bottomcontents{
+  	width: 1100px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 40px;
+	}
+	a#Costleft{
+		  background-image: url(mainimg/prev-1.png);
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	width: 30px;
+    	height: 60px;
+    	display: block;
+    	position: absolute;
+    	left: 2.5%;
+    	top: 165px;
+    	background-color: #fff;
+    	border: none;
+	}
+	a#Costright{
+		  background-image: url(mainimg/next-1.png);
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	width: 34px;
+    	height: 60px;
+    	display: block;
+    	position: absolute;
+    	right: 2.5%;
+    	top: 165px;
+    	background-color: #fff;
+    	border: none;
+
+	}
+	.scatterinfo p{
+		  padding-top: 26px;
+	}
+</style>
+</head>
+
+<body>
+
+<div id="container"></div>
+<script type="text/babel">
+var {
+  Router,
+  Route,
+  IndexRoute,
+  IndexLink,
+  Link
+} = ReactRouter;
+ var destination = document.querySelector("#container");
+ var Headimages =["url(mainimg/dolce-and-gabbana-winter-2020-man-tropical-king-collection-online-store-top-banner-02.jpg)","url(mainimg/dolce-and-gabbana-fall-winter-2018-19-women-fashion-show-video-hero-banner.jpg)","url(mainimg/dolce-and-gabbana-winter-2020-woman-sicily-58-62-top-banner.jpg)"]
+ var Bgimages =["Bgslider/1.jpg","Bgslider/2.jpg","Bgslider/3.jpg","Bgslider/4.jpg","Bgslider/5.jpg","Bgslider/6.jpg","Bgslider/7.jpg","Bgslider/8.jpg"]
+var MainStaticimages =["Mainstatic/1.jpg","Mainstatic/2.jpg","Mainstatic/3.jpg","Mainstatic/4.jpeg"]
+var MaleStaticimages =["Malestatic/1.jpg","Malestatic/2.jpg","Malestatic/3.jpg","Malestatic/4.jpg"]
+var MainScatterimages =["Mainscatter/1.jpg","Mainscatter/2.jpg","Mainscatter/3.jpg","Mainscatter/4.jpg","Mainscatter/5.jpg"]
+var MainScattercomment=["A Hymn to Freedom","2020 크루즈 컬렉션 패션쇼 런웨이","여성 스니커즈","BEYOND THE DREAM","남성 스니커즈"]
+var Jimages =["J/반지.jpg","J/반지2.jpg","J/귀걸이1.jpg","J/귀걸이2.jpg","J/팔찌1.jpg","J/팔찌2.jpg","J/목걸이1.jpg","J/목걸이.jpg","J/목걸이3.jpg"]
+var Jimagescomment=["Two 내로우 링","뱅글","티파니 솔리테어 다이아몬드 이어링","티파니 시그니처 펄이어링","러브 앤 키스 브레이슬릿","인터라킹 브레이슬릿","Tiffany Victoria 키 펜던트","파베 다이아몬드 플라워 펜던트","JUSTE UN CLOU NECKLACE"]
+var jcost=["12,050,000","17,240,000","5,750,000","28,400,000","1,660,000","8,450,000","13,400,000","4,220,000","100,000,000"]
+var Bagimages=["B/b1 변환.jpg","B/b2 변환.jpg","B/b4 변환.jpg","B/b5 변환.jpg","B/b6 변환.jpg","B/b7 변환.jpg","B/b9 변환.jpg","B/b10 변환.jpg"]
+var Bagcomment=["사이드 팩","가브리엘 스몰 호보 백","비치 볼 미노디에르","보이 샤넬 스몰 플랩 백","카메라 케이스","버킷 백","플랩 백","라지 토트 백"]
+var Bagcost=["9,350,000","4,570,000","10,630,000","가격문의","4,770,000","3,560,000","4,640,000","4,300,000"]
+var clockimages=["C/시계1.jpg","C/시계2.jpg","C/시계3.jpg","C/시계4.jpg","C/시계5.jpg","C/시계6.jpg","C/시계7.jpg","C/시계8.jpg","C/시계9.jpg","C/시계10.jpg"]
+var clockcomment=["PATRIMONY 셀프 와인딩","PARTIMONY 페퍼추얼","FIFTYSIX 투르비용","FIFTYSIX 컴플리트 캘린더","FIFTYSIX 데이-데이트","OVERSEAS 투르비용","OVERASES 퍼페추얼","QUAIDE L'ILE셀프 와인딩","코페르니쿠스 천구","메카니크 그라베"]
+var clockcost=["33,500,000","100,000,000","가격문의","29,200,000","22,100,000","가격문의","96,000,000","19,700,000","가격문의","110,000,000"]
+var purpumeimages=["MH/1.jpg","MH/2.jpg","MH/3.jpg","MH/4.jpg","MH/5.jpg","MH/6.jpg","MH/7.jpg","MH/8.jpg","MH/9.jpg","MH/10.jpg"]
+var purpumecomment=["포스 수프림 원 에센스","옴므 아쿠아파워 올인원","맨 워터리 플루이드","멀티-액션 훼이스 워시","옴므 에센스 인 스킨","본윤유액","애프터 쉐이브 로션","워터리 모이스춰 로션","옴므 블랙 퍼펙트 로션","레스큐 워터로션"]
+var purpumecost=["760,000","500,000","300,000","380,000","420,000","52,000","780,000","450,000","550,000","51,000"]
+var Fscatterimages=["Fscatter/1.jpg","Fscatter/2.jpg","Fscatter/3.jpg","Fscatter/4.jpg","Fscatter/5.jpg"]
+var Fscattercomment=["SIMPER와의 여행","전설적인 디자인. 혁신적인 컷. 놀라운 광채.","Meet Your Match","진정한 디자인 걸작","러브 스토리"]
+var Malescatterimages=["Malescatter/1.jpg","Malescatter/2.jpg","Malescatter/3.jpg","Malescatter/4.jpeg","Malescatter/5.jpg"]
+var Malescattercomment=["LES HEURES VOYAGEUSES","잊을 수 없는 감정의 향","YACHT-MASTER 42"," 칼리버 3610 QP","SEA-DWELLER"]
+var Fstaticimages=["Wstatic/1.jpg","Wstatic/2.jpg","Wstatic/3.jpg","Wstatic/4.jpg"]
+var Scatterview = React.createClass({
+  render:function(){
+    var ScatterStyle={
+      width:1100,
+	    margin:"auto",
+      marginTop:150
+    };
+    return(
+    <div className="scatterinfo" style={ScatterStyle}>
+        <div>
+            <div className="Sccom1">
+               <img src={this.props.image[0]} className="Scimageshow1"></img>
+               <p>{this.props.comment[0]}</p>
+            </div>
+            <div id="sccom-1" className="Sccom1">
+                <img src={this.props.image[1]} className="Scimageshow1"></img>
+               <p>{this.props.comment[1]}</p>
+            </div>
+        </div>
+        <div>
+            <div className="Sccom2">
+               <img src={this.props.image[2]} className="Scimageshow2"></img>
+               <p>{this.props.comment[2]}</p>
+            </div>
+            <div id="sccom-2" className="Sccom2">
+               <img src={this.props.image[3]} className="Scimageshow2"></img>
+               <p>{this.props.comment[3]}</p>
+            </div>
+            <div className="Sccom2">
+               <img src={this.props.image[4]} className="Scimageshow2"></img>
+               <p>{this.props.comment[4]}</p>
+            </div>
+        </div>
+    </div>
+  )
+  }
+});
+var Bottom = React.createClass({
+
+  render:function(){
+    var logostyle={
+      width:240,
+      height:40
+    };
+    var BottomStyle={
+      marginTop: 130,
+    	backgroundColor: "rgb(245, 245, 245)",
+    	height: 230,
+    	position: "relative"
+    };
+    return(
+      <div style={BottomStyle}>
+         <hr></hr>
+         <img style={logostyle} src="mainimg/logo.png"></img>
+         <hr></hr>
+         <br></br><br></br><br></br><br></br>
+	       <div id="Bottomcontents">
+            <div className="bottomLeft">
+               <h4 className="Bottomheader">SIMPLER코리아 공식 온라인스토어 | 대표이사 : 차시호<br></br>서울시 강남구 삼성동511 0층 | 사업자 등록번호: 000-00-00000<br></br>통신판매신고번호: 0000-서울강남-01699<br></br>고객센터 : 02-0000-0000 | FAX : 02-0000-0000</h4>
+            </div>
+            <div className="bottomRight">
+              <h5>청운은행 구매안전 서비스(채무지급보증)<br></br>고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 <br></br>청운은행 구매안전서비스를 이용하실 수 있습니다.</h5>
+            </div>
+	       </div>
+      </div>
+    )
+  }
+});
+var Staticview = React.createClass({
+  render:function(){
+    var staticStyle={
+      width:1100,
+      height:300,
+      display:"inline-block",
+      borderTopStyle:"groove",
+      paddingTop:100
+    };
+    return(
+      <div style={staticStyle} >
+      <img src={this.props.image[0]} className="Simageshow"></img>
+      <img src={this.props.image[1]} className="Simageshow"></img>
+      <img src={this.props.image[2]} className="Simageshow"></img>
+      <img src={this.props.image[3]} className="Simageshow"></img>
+
+      </div>
+    )
+  }
+});
+var Bgslider = React.createClass({
+  getInitialState:function(){
+    return{
+        state:0
+     };
+    },
+    lower:function(){
+      if(this.state.state==0)
+      {
+        this.setState({
+        state:0
+      });
+      }
+      else
+      {
+        this.setState({
+        state:this.state.state-1
+        });
+      }
+    },
+    upper:function(){
+      if(this.state.state!=this.props.image.length-3)
+      {
+        this.setState({
+        state:this.state.state+1
+        });
+      }
+    },
+  render:function(){
+    var BgslideStyle={
+      height:530,
+      width:1100,
+      backgroundColor:"rgba(181, 181, 181, 0.5)",
+	    margin:"auto",
+      marginTop:200,
+	    position:"relative",
+      display:"inline-block",
+    };
+	var Leftstyle={
+	    backgroundImage: "url(mainimg/prev-1.png)",
+    	backgroundRepeat: "no-repeat",
+    	backgroundSize: "cover",
+    	width: 30,
+    	height: 60,
+    	display: "block",
+	   	position: "absolute",
+      left: "2.5%",
+	  	top:220
+	   };
+	var Rightstyle={
+	    backgroundImage: "url(mainimg/next-1.png)",
+    	backgroundRepeat: "no-repeat",
+    	backgroundSize: "cover",
+    	width: 33,
+    	height: 60,
+    	display: "block",
+		position: "absolute",
+        right: "2.5%",
+		top:220
+	};
+  var BgslideimageStyle={
+    width: 270,
+    height: 390,
+    filter:"drop-shadow(0px 0px 5px #666)",
+   paddingLeft:25,
+   paddingRight:25,
+   paddingTop:85
+  };
+    return(
+      <div style={BgslideStyle}>
+      <p className="Bgslideinfo"> 2020 크루즈 컬렉션 패션쇼 런웨이</p>
+      <a  style={Leftstyle} onClick={this.lower}></a>
+      <img style={BgslideimageStyle} src={this.props.image[this.state.state+0]} ></img>
+      <img style={BgslideimageStyle} src={this.props.image[this.state.state+1]} ></img>
+      <img style={BgslideimageStyle} src={this.props.image[this.state.state+2]} ></img>
+      <a  style={Rightstyle} onClick={this.upper}></a>
+      </div>
+    );
+  }
+});
+var CostslideComponent = React.createClass({
+  render:function(){
+    var CostslidecomponentStyle={
+      display:"inline-block",
+     paddingLeft:25,
+     paddingRight:25
+    };
+    return(
+      <div style={CostslidecomponentStyle}>
+      <img src={this.props.image} className="Costimageshow"></img>
+      <p>{this.props.comment}</p>
+      <p>{this.props.cost}</p>
+      </div>
+  )
+}
+});
+var Costslider = React.createClass({
+ getInitialState:function(){
+   return{
+       state:0
+    };
+   },
+   lower:function(){
+     if(this.state.state==0)
+     {
+       this.setState({
+       state:0
+     });
+     }
+     else
+     {
+       this.setState({
+       state:this.state.state-1
+       });
+     }
+   },
+   upper:function(){
+     if(this.state.state!=this.props.image.length-4)
+     {
+       this.setState({
+       state:this.state.state+1
+       });
+     }
+   },
+ render:function(){
+   var bslideStyle={
+     height:226,
+     width:1100,
+	   margin: "auto",
+	   position:"relative"
+   };
+   return(
+     <div style={bslideStyle}>
+     <a id="Costleft" onClick={this.lower}></a>
+        <CostslideComponent image={this.props.image[this.state.state]}   comment={this.props.comment[this.state.state]}    cost={this.props.cost[this.state.state]}/>
+        <CostslideComponent image={this.props.image[this.state.state+1]} comment={this.props.comment[this.state.state+1]}  cost={this.props.cost[this.state.state+1]}/>
+        <CostslideComponent image={this.props.image[this.state.state+2]} comment={this.props.comment[this.state.state+2]}  cost={this.props.cost[this.state.state+2]}/>
+        <CostslideComponent image={this.props.image[this.state.state+3]} comment={this.props.comment[this.state.state+3]}  cost={this.props.cost[this.state.state+3]}/>
+        <a id="Costright" onClick={this.upper}></a>
+     </div>
+   );
+ }
+});
+var Headslider = React.createClass({
+  getInitialState:function(){
+    return{
+      show:0
+    };
+  },
+  timerTick:function(){
+
+      if(this.state.show==2)
+      {
+        this.setState({
+        show:0
+      });
+      }
+      else
+      {
+        this.setState({
+        show:this.state.show+1
+        });
+      }
+  },
+  componentDidMount:function(){
+    setInterval(this.timerTick,5000);
+  },
+  lower:function(){
+    if(this.state.show==0)
+    {
+      this.setState({
+      show:2
+    });
+    }
+    else
+    {
+      this.setState({
+      show:this.state.show-1
+      });
+    }
+  },
+  change0:function(){
+    this.setState({
+      show:0
+    })
+  },
+  change1:function(){
+    this.setState({
+      show:1
+    })
+  },
+  change2:function(){
+    this.setState({
+      show:2
+    })
+  },
+  upper:function(){
+    if(this.state.show==2)
+    {
+      this.setState({
+      show:0
+    });
+    }
+    else
+    {
+      this.setState({
+      show:this.state.show+1
+      });
+    }
+  },
+  render:function(){
+    var HeadsliderimageStyle ={
+      backgroundImage:this.props.image[this.state.show],
+	    backgroundRepeat:"no-repeat",
+      align:'center',
+      height:543,
+      width:'100%',
+      filter:"drop-shadow(0px 0px 5px #666)"
+
+    };
+    return(
+      <div style={HeadsliderimageStyle}>
+      <a className="left" onClick={this.lower}></a>
+      <a className="right" onClick={this.upper}></a>
+      <ul className="circle">
+      <li onClick={this.change0}>●</li>
+      <li onClick={this.change1}>●</li>
+      <li onClick={this.change2}>●</li>
+      </ul>
+      </div>
+    )
+  }
+});
+ var Main = React.createClass({
+ render:function(){
+ return(
+ <div>
+  <Headslider image={Headimages}/>
+  <p className="info">2019 Simpler 프리폴 컬렉션</p>
+  <Staticview image={MainStaticimages}/>
+  <Bgslider image={Bgimages} />
+  <p className="info"> The story of SIMPLER </p>
+  <Scatterview image={MainScatterimages} comment={MainScattercomment}/>
+  <Bottom/>
+ </div>
+ )
+ }
+ });
+ var Male = React.createClass({
+ render:function(){
+ return(
+ <div>
+   <hr></hr>
+ <p className="info">2019 Simpler FOR MAN</p>
+ <Staticview image={MaleStaticimages}/>
+ <p className="info">시계</p>
+ <Costslider image={clockimages} comment={clockcomment} cost={clockcost}/>
+ <p className="info">화장품</p>
+ <Costslider image={purpumeimages} comment={purpumecomment} cost={purpumecost}/>
+ <Scatterview image={Malescatterimages} comment={Malescattercomment}/>
+ <Bottom/>
+ </div>
+ )
+ }
+ });
+ var Female = React.createClass({
+ render:function(){
+ return(
+ <div>
+   <hr></hr>
+ <Scatterview image={Fscatterimages} comment={Fscattercomment}/>
+ <p className="info">탑 핸들</p>
+ <Costslider image={Bagimages} comment={Bagcomment} cost={clockcost}/>
+ <p className="info">주얼리</p>
+ <Costslider image={Jimages} comment={Jimagescomment} cost={jcost}/>
+ <p className="info">RING SPECIAL</p>
+ <Staticview image={Fstaticimages}/>
+ <Bottom/>
+ </div>
+ )
+ }
+ });
+
+ var All = React.createClass({
+    render:function(){
+       return(
+          <div id="header">
+             <img id="logo" src="mainimg/logo.png" ></img>
+             <ul className="menu">
+                <li><Link to="/female">여성</Link></li>
+                <li><Link to="/">메인</Link></li>
+                <li><Link to="/male">남성</Link></li>
+             </ul>
+            <div className="content">
+             {this.props.children}
+            </div>
+         </div>
+         )
+    }
+ });
+
+ ReactDOM.render(
+   <Router>
+   <Route path="/" component={All}>
+   <IndexRoute component={Main}/>
+   <Route path="male" component={Male}/>
+   <Route path="female" component={Female}/>
+   </Route>
+  </Router>,
+   destination
+ );
+</script>
+  </body>
+</html>
